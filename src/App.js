@@ -134,7 +134,7 @@ function App() {
   };
 
   const deleteContactHandler = (e) => {
-    const toBeDeletedId = +e.target.value;
+    const toBeDeletedId = e.target.value;
     const toBeDeleted = contacts.find(
       (contact) => contact.id === toBeDeletedId
     );
