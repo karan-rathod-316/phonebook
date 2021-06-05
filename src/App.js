@@ -115,12 +115,19 @@ function App() {
     } else {
       contactsServices
         .addContact({ name: newName, number: newNumber })
-        .then((res) => setContacts(contacts.concat(res)));
-
-      setNotification({
-        notificationMessage: `Added ${newName}`,
-        notificationClass: "addedNotification",
-      });
+        .then((res) => {
+          setContacts(contacts.concat(res));
+          setNotification({
+            notificationMessage: `Added ${newName}`,
+            notificationClass: "addedNotification",
+          });
+        })
+        .catch((error) => {
+          setNotification({
+            notificationMessage: `${error.response.data.error}`,
+            notificationClass: "error",
+          });
+        });
 
       setTimeout(
         () =>
